@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>Project Django</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+* {
+    box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+}
+
+/* Style the header */
+.header {
+    background-color: #f1f1f1;
+    padding: 05px;
+    text-align: center;
+}
+
+
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #263E93;
+}
+
+li {
+    float: left;
+}
+
+li a, .dropbtn {
+    display: inline-block;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    padding: 15px 26px;
+}
+
+li a:hover, .dropdown:hover .dropbtn {
+    background-color: #3D59BF;
+}
+
+li.dropdown {
+    display: inline-block;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    text-align: left;
+}
+
+.dropdown-content a:hover {background-color: #f1f1f1}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+
+div.container {
+    width: 100%;
+    border: 1px solid black;
+}
+
+footer {
+    padding: 1em;
+    color: white;
+    background-color: #263E93;
+    color: black;
+    clear: left;
+    text-align: center;
+}
+
+nav {
+    float: left;
+    max-width: 160px;
+    margin: 0;
+    padding: 1em;
+}
+
+nav ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+nav ul a {
+    text-decoration: none;
+}
+
+article {
+
+    margin-left: 200px;
+    border-left: 1px solid gray;
+    border-bottom: 1px solid gray;
+    padding: 2em;
+    overflow: hidden;
+}
+
+
+.viewing {
+    margin-height: 200px;
+    margin-left: 170px;
+    border-left: 1px solid black;
+    border-up: 1px solid black;
+
+    padding: 1em;
+    overflow: hidden;
+}
+
+</style>
+
+
+{% load static %}
+
+<script type="text/javascript" src="{% static "fusioncharts/fusioncharts.js" %}"></script>
+
+<script type="text/javascript" src="{% static "fusioncharts/themes/fusioncharts.theme.fint.js" %}">
+
+</script>
+
+</head>
+<body>
+
+
+  <ul>
+    <li><a>Dashboarding with Django</a></li>
+    <li><a href="{% url 'home' %}" name = "Home">Home</a></li>
+  <!--<li><a href="#About" name = "Home">About</a></li>--->
+    <li><a href="{% url 'graphical_whole' %}">View graph</a></li>
+
+      <li class="dropdown">
+          <a href="javascript:void(0)" class="dropbtn">Techniques I</a>
+          <div class="dropdown-content">
+          <a href="{% url 'Naive' %}" id="#sample">Naive Method</a>
+          <a href="{% url 'moving_averages' %}" id = "#sample">Moving Averages</a>
+          <a href="{% url 'exponential_smoothing' %}" id ="#sample">Exponential Smoothing</a>
+          <a href="{% url 'double_exponential_smoothing' %}" id ="#sample">Double Exponential Smoothing</a>
+          <a href="{% url 'triple_exponential_smoothing' %}">Holt-Winters</a>
+          <div>
+      </li>
+
+    </li>
+    <li class="dropdown">
+      <a href="javascript:void(0)" class="dropbtn">Techniques II</a>
+      <div class="dropdown-content">
+        <a href="{% url 'ARMA' %}" id="#sample">ARMA</a>
+        <a href="{% url 'ARIMA2' %}" id="#sample">ARIMA</a>
+        <a href="{% url 'ARIMAX' %}">ARIMAX</a>
+        <a href="{% url 'SARIMAX' %}">SARIMAX</a>
+      </div>
+    </li>
+    <li><a href="{% url 'Linear' %}">Linear Regression</a></li>
+</head>
+</ul>
+<body>
+
+<div class="container">
+<div method = "GET">
+<nav>
+  <div>
+
+    <br>
+  </div>
+</nav>
+
+
+<div class="container">
+<center>
+<div>
+<nav>
+  <ul>
+    <li><h4><a href="{% url 'Naive' %}" id="#sample">Naive Method</a></li></h4>
+    <li><h4><a href="{% url 'moving_averages' %}" id = "#sample">Moving Averages</a></li></h4>
+    <li><h4><a href="{% url 'exponential_smoothing' %}" id ="#sample">Exponential Smoothing</a></li></h4>
+    <li><h4><a href="{% url 'double_exponential_smoothing' %}" id ="#sample">Double Exponential Smoothing</a></li></h4>
+    <li><h4><a href="{% url 'triple_exponential_smoothing' %}">Holt-Winters</a></li></h4>></h4>
+
+  </ul>
+</nav>
+</div>
+</center>
+
+<article>
+<viewing>
+
+  <div  style="width: 400px">
+    <button><a href= "{% url 'triple_exponential_smoothing' %}" >Automatic</a></button>  <button><a href="{% url 'triple_exponential_smoothing_man' %}">Manual</a></button>
+  </div>
+<br>
+<br>
+
+<form method = "POST">
+  <p  style="width: 400px">
+   alpha value
+ <input type="range" name="alpha" id="pInputId" value="0" min="0" step = "0.1" max="1.0" oninput="pOutputId.value = pInputId.value">
+ <output name="pOutputName" id="pOutputId">0</output>
+<br>
+<br>
+ beta value
+ <input type="range" name="beta" id="betaInputId" value="0" min="0" step = "0.1" max="1.0" oninput="betaOutputId.value = betaInputId.value">
+ <output name="betaOutputName" id="betaOutputId">0</output>
+ <br>
+ <br>
+  gamma value
+  <input type="range" name="gamma" id="gammaInputId" value="0" min="0" step = "0.1" max="1.0" oninput="gammaOutputId.value = gammaInputId.value">
+  <output name="gammaOutputName" id="gammaOutputId">0</output>
+
+  <br>
+  <br>
+  {%csrf_token%}
+  <button type="submit">Submit Values </button>
+</p>
+</form>
+
+
+
+  <div id="chart-1"></div>
+
+    {{ output | safe }}
+
+<br>
+<br>
+
+</viewing>
+</article>
+
+
+
+<footer>Copyright &copy; 2018 Sailotech Pvt Ltd</footer>
+
+
+</body>
+</html>

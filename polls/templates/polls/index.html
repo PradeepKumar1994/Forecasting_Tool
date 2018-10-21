@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>Project Django</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+* {
+    box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+}
+
+/* Style the header */
+.header {
+    background-color: #f1f1f1;
+    padding: 20px;
+    text-align: center;
+}
+
+
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #333;
+}
+
+li {
+    float: left;
+}
+
+li a, .dropbtn {
+    display: inline-block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+li a:hover, .dropdown:hover .dropbtn {
+    background-color: red;
+}
+
+li.dropdown {
+    display: inline-block;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    text-align: left;
+}
+
+.dropdown-content a:hover {background-color: #f1f1f1}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+
+div.container {
+    width: 100%;
+    border: 1px solid gray;
+}
+
+footer {
+    padding: 1em;
+    color: white;
+    background-color: #ddd;
+    color: black;
+    clear: left;
+    text-align: center;
+}
+
+nav {
+    float: left;
+    max-width: 160px;
+    margin: 0;
+    padding: 1em;
+}
+
+nav ul {
+    list-style-type: none;
+    padding: 0;
+}
+   
+nav ul a {
+    text-decoration: none;
+}
+
+article {
+
+    margin-left: 170px;
+    border-left: 1px solid gray;
+    border-bottom: 1px solid gray;
+    padding: 2em;
+    overflow: hidden;
+}
+
+
+.viewing {
+    margin-height: 200px;
+    margin-left: 170px;
+    border-left: 1px solid gray;
+    border-up: 1px solid gray;
+
+    padding: 1em;
+    overflow: hidden;
+} 
+
+
+
+
+</style>
+
+</head>
+<body>
+
+<div class="header">
+  <h1>Header</h1>
+</div>
+
+<ul>
+  <li><a>Time Series Modelling</a></li>
+  <li><a href="/polls/home/">Home</a></li>
+  <li><a href="#About">About</a></li>
+  <li class="dropdown">
+    <a href="javascript:void(0)" class="dropbtn">Smoothing Techniques</a>
+    <div class="dropdown-content">
+      <a href="#">Moving Averages</a>
+      <a href="#">Exponential Smoothing</a>
+      <a href="#">Double Exponential Smoothing</a>
+      <a href="#">Triple Exponential Smoothing</a>
+      <a href="#">Holt's Linear Exponential Smoothing</a>
+    </div>
+  </li>
+</ul>
+</head>
+<body>
+
+<div class="container">
+
+<div method = "GET">  
+<nav>
+  <ul>
+    <li><h3><a href="{% url 'home' %}" name = "foo">Sample data</a></li></h3>
+    <li><h3><a href="#">Summary</a></li></h3>
+    <li><h3><a href="#">nothing</a></li></h3>
+  </ul>
+</nav>
+</form>
+<article>
+
+  
+  <p>
+  <form method = "POST" enctype="multipart/form-data">
+
+{%csrf_token%}
+Upload file: <input type= "file" name="file" id = "upload">
+		<button type = "submit">Upload</button>
+<br>
+</form>
+
+{% if upload_file_url %}
+	<p> The selected file is uploaded </p>
+{% endif %}
+
+  </p>
+
+<br>
+<br>
+
+</article>
+
+<article>
+<viewing name = "foo">
+
+
+{%block content%}
+{{column}}
+{% for j in data %}
+<td> {{j}} </td>
+{%endfor%}
+{%endblock%}
+
+
+
+</viewing>
+</article> 
+
+<footer>Copyright &copy; Mine- not all mine</footer>
+
+
+
+</body>
+</html>
+	
